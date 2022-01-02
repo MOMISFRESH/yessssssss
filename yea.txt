@@ -1,0 +1,253 @@
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+    if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
+    game:GetService("RunService").Heartbeat:connect(function()
+    v.Velocity = Vector3.new(-35,0,0)
+    end)
+    end
+    end
+    
+    m = game.Players.LocalPlayer:GetMouse()
+    
+    
+    --netless ^^
+    
+    --created by 189hi / rewriten by 189hi
+    
+    
+    
+    wait(1)
+    
+    
+    local hatnameclone = {}
+        for _,v in next, game:FindFirstChildOfClass("Players").LocalPlayer["Character"]:GetChildren() do
+            if v:IsA("Accessory") then
+                if hatnameclone[v.Name] then
+                    if hatnameclone[v.Name] == "s" then
+                        hatnameclone[v.Name] = {}
+                    end
+                    table.insert(hatnameclone[v.Name],v)
+                else
+                    hatnameclone[v.Name] = "s"
+                end
+            end
+        end
+        for _,v in pairs(hatnameclone) do
+            if type(v) == "table" then
+                local num = 1
+                for _,w in pairs(v) do
+                    w.Name = w.Name..num
+                    num = num + 1
+                end
+            end
+        end
+        hatnameclone = nil
+        
+        local CountSCIFIMOVIELOL = 1
+        function attach(Part0,Part1,Position,Angle)
+            local AlignPos = Instance.new('AlignPosition', Part1); AlignPos.Name = "AliP_"..CountSCIFIMOVIELOL
+            AlignPos.ApplyAtCenterOfMass = true;
+            AlignPos.MaxForce = 5772000
+            AlignPos.MaxVelocity = math.huge/9e110;
+            AlignPos.ReactionForceEnabled = false;
+            AlignPos.Responsiveness = math.huge;
+            AlignPos.RigidityEnabled = false;
+            local AlignOri = Instance.new('AlignOrientation', Part1); AlignOri.Name = "AliO_"..CountSCIFIMOVIELOL
+            AlignOri.MaxAngularVelocity = math.huge/9e110;
+            AlignOri.MaxTorque = 5772000
+            AlignOri.PrimaryAxisOnly = false;
+            AlignOri.ReactionTorqueEnabled = false;
+            AlignOri.Responsiveness = math.huge;
+            AlignOri.RigidityEnabled = false;
+            local AttachmentA=Instance.new('Attachment',Part1); AttachmentA.Name = "AthP_"..CountSCIFIMOVIELOL
+            local AttachmentB=Instance.new('Attachment',Part0); AttachmentB.Name = "AthP_"..CountSCIFIMOVIELOL
+            local AttachmentC=Instance.new('Attachment',Part1); AttachmentC.Name = "AthO_"..CountSCIFIMOVIELOL
+            local AttachmentD=Instance.new('Attachment',Part0); AttachmentD.Name = "AthO_"..CountSCIFIMOVIELOL
+            AttachmentC.Orientation = Angle or Vector3.new(0,0,0)
+            AttachmentA.Position = Position or Vector3.new(0,0,0)
+            AlignPos.Attachment1 = AttachmentA;
+            AlignPos.Attachment0 = AttachmentB;
+            AlignOri.Attachment1 = AttachmentC;
+            AlignOri.Attachment0 = AttachmentD;
+    local BodyVelocity = Instance.new("BodyVelocity",Part0)
+        game:GetService("RunService").Heartbeat:Connect(
+            function()
+                Part0.Velocity = Vector3.new(1, -32.435, 1)
+                BodyVelocity.Velocity = Vector3.new(1, -32.435, 1)
+                BodyVelocity.P = math.huge
+            end
+        )
+            CountSCIFIMOVIELOL = CountSCIFIMOVIELOL + 1
+        end
+        local char = game.Players.LocalPlayer.Character
+        char.Archivable = true
+        local clone = char:Clone()
+        clone.Parent = char
+        clone.Head.face.Transparency = 1
+        clone.Name = "BotReanimate"
+        clone.HumanoidRootPart.CFrame = char.HumanoidRootPart.CFrame
+        clone.HumanoidRootPart.Anchored = false
+        local stepped=game:GetService("RunService").Stepped:connect(function()
+            for i,v in pairs(char:GetDescendants())do
+                if v:IsA("BasePart") then 
+                    v.CanCollide=false
+                end
+            end
+        end)
+        
+        for i,v in next, char:GetChildren() do
+            if v:IsA("Accessory") and v:FindFirstChild("Handle") then
+                v.Handle:BreakJoints()
+                local fakehat = clone:FindFirstChild(v.Name)
+                if fakehat then
+                    attach(v.Handle, fakehat.Handle)
+                    fakehat.Handle.Transparency = 1
+                end
+            end
+        end
+        
+        local tors1 = char["SeeMonkey"]
+        tors1.Handle:ClearAllChildren()
+        local larm = char.Hat1
+        larm.Handle:ClearAllChildren()
+        local rarm = char["Kate Hair"]
+        rarm.Handle:ClearAllChildren()
+        local lleg = char["Pink Hair"]
+        lleg.Handle:ClearAllChildren()
+        local rleg = char.LavanderHair
+        rleg.Handle:ClearAllChildren()
+    
+        attach(tors1.Handle,clone["Torso"],Vector3.new(-0.1,0,0), Vector3.new(90,0,0))
+        attach(larm.Handle,clone["Left Arm"],Vector3.new(1.4,0,-0.5), Vector3.new(0,94,0))
+        attach(rarm.Handle,clone["Right Arm"],Vector3.new(-1.5,0,0.5), Vector3.new(90,0,0))
+        attach(lleg.Handle,clone["Left Leg"],Vector3.new(-0.1,0,0), Vector3.new(90,0,0))
+        attach(rleg.Handle,clone["Right Leg"],Vector3.new(-0.1,0,0), Vector3.new(90,0,0))
+    
+        
+        
+        for i,v in next, clone:GetChildren() do
+            if v:IsA("BasePart") then
+                v.Transparency = 1
+            end
+        end
+        
+        game.Players.LocalPlayer.Character=clone
+        workspace.CurrentCamera.CameraSubject=clone.Humanoid
+        
+        
+        clone.Humanoid.Died:Connect(function()
+            print("Bot Reset")
+            
+            workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+            
+            game.Players.LocalPlayer.CameraMode="Classic"
+            
+            char:BreakJoints()
+            
+            stepped:Disconnect()
+            
+            clone:Destroy()
+            
+            game.Players.LocalPlayer.Character = char
+        end)
+        
+        
+    HumanDied = false
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/XeneonPlays/Nexo/main/NexoReanimate'),true))()
+    
+    IT = Instance.new
+    CF = CFrame.new
+    VT = Vector3.new
+    RAD = math.rad
+    C3 = Color3.new
+    UD2 = UDim2.new
+    BRICKC = BrickColor.new
+    ANGLES = CFrame.Angles
+    EULER = CFrame.fromEulerAnglesXYZ
+    COS = math.cos
+    ACOS = math.acos
+    SIN = math.sin
+    ASIN = math.asin
+    ABS = math.abs
+    MRANDOM = math.random
+    FLOOR = math.floor
+    
+    speed = 1
+    sine = 1
+    srv = game:GetService('RunService')
+    
+    function setuptrail(parent,Pos1,Pos2,Color,LT,LE,Texture)
+    IT = Instance.new
+    local Part1 = parent
+    local A1 = IT("Attachment",Part1)
+    A1.Position = Pos1
+    A1.Name = "ATH10"
+    local B1 = IT("Attachment",Part1)
+    B1.Position = Pos2
+    B1.Name = "ATH11"
+    local Trail1 = IT("Trail",Part1)
+    Trail1.Name = "Nexo Trail"
+    Trail1.Color = Color
+    Trail1.Attachment0 = B1
+    Trail1.Attachment1 = A1
+    Trail1.Lifetime = LT
+    Trail1.LightEmission = LE
+    Trail1.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 1)})
+    Trail1.Texture = Texture
+    Trail1.Enabled = true
+    end
+    
+    --                          |
+    --put the setup trail below v
+    
+    --put the hat script converted below
+    
+    reanim = game.Players.LocalPlayer.Character
+    RJ = reanim.HumanoidRootPart.RootJoint
+    RS = reanim.Torso['Right Shoulder']
+    LS = reanim.Torso['Left Shoulder']
+    RH = reanim.Torso['Right Hip']
+    LH = reanim.Torso['Left Hip']
+    Root = reanim.HumanoidRootPart
+    NECK = reanim.Torso.Neck
+    NECK.C0 = CF(0,1,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    NECK.C1 = CF(0,-0.5,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    RJ.C1 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    RJ.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    RS.C1 = CF(-0.5,0.5,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    LS.C1 = CF(0.5,0.5,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    RH.C1 = CF(0,1,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    LH.C1 = CF(0,1,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    RH.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    LH.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    RS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    LS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
+    
+    coroutine.wrap(function()
+    while true do -- anim changer
+    if HumanDied then break end
+    sine = sine + speed
+    if Root.Velocity.y > 1 then -- jump
+    --jump clerp here
+    elseif Root.Velocity.y < -1 then -- fall
+    --fall clerp here
+    elseif Root.Velocity.Magnitude < 2 then -- idle
+    NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.sin(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),3+0.4*math.cos(sine/-32),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.sin(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.sin(sine/13),-0.1+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.sin(sine/13)),RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/13),-1+0.1*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-8+0*math.sin(sine/39)),RAD(0+0*math.cos(sine/71)),RAD(1+0*math.sin(sine/13))),.1)
+    LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/90),-1+0.2*math.cos(sine/27),-1+0*math.cos(sine/13))*ANGLES(RAD(-28+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    elseif Root.Velocity.Magnitude < 20 then -- walk
+    reanim.Humanoid.WalkSpeed = 51
+    elseif Root.Velocity.Magnitude > 20 then -- run
+    NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.sin(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),3+0.4*math.cos(sine/-32),0+0*math.cos(sine/13))*ANGLES(RAD(-37+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.sin(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0*math.sin(sine/13),-0.1+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.sin(sine/13)),RAD(-2+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)
+    RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/13),-1+0.1*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(-8+0*math.sin(sine/39)),RAD(0+0*math.cos(sine/71)),RAD(1+0*math.sin(sine/13))),.1)
+    LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/90),-1+0.2*math.cos(sine/27),-1+0*math.cos(sine/13))*ANGLES(RAD(-28+0*math.sin(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.sin(sine/13))),.1)end
+    srv.RenderStepped:Wait()
+    end
+    end)()
+    --Created using Nexo Animator
+    
